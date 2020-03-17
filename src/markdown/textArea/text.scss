@@ -1,0 +1,50 @@
+$border: black solid thin;
+
+.textContainer {
+  width: 47%;
+  margin: 0 auto 23px;
+  border: $border;
+  font-size: medium;
+  box-shadow: 1px 1px 12px -1px black;
+}
+
+.noneText {
+  display: none;
+}
+
+.textEnlarged {
+  position: absolute;
+  top: 20px;
+  bottom: 20px;
+  right: 20px;
+  left: 20px;
+  #editor {
+    position: absolute;
+    top: 30px;
+    bottom: 0;
+    right: 0;
+    left: 0;
+  }
+}
+
+.textHeader {
+  background-color: rgb(221, 83, 83);
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px;
+  border: $border;
+  .edit {
+    margin-left: 10px;
+    font-weight: 900;
+  }
+}
+textarea {
+  display: block;
+  width: 100%;
+  margin: 0;
+  border: $border;
+  outline: none;
+  background-color: rgb(212, 152, 152);
+}

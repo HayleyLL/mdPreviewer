@@ -1,26 +1,93 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Md from "./markdown/mdCont/mdContent";
+import TextArea from "./markdown/textArea/text";
+import { initials } from "./markdown/initData";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      textArea: {
+        input: initials,
+        className: "textContainer",
+        enlarged: false
+      },
+      mdPreview: {
+        className: "mdContainer",
+        enlarged: false
+      }
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleTextClick = this.handleTextClick.bind(this);
+    this.handleMdClick = this.handleMdClick.bind(this);
+  }
+
+  handleChange({ target }) {
+    const state = {
+      textArea: {
+        input: target.value,
+        className: "textContainer",
+        enlarged: false
+      }
+    };
+    this.setState(state);
+  }
+
+  handleTextClick({ currentTarget }) {
+    const { textArea, mdPreview } = this.state;
+    const { input } = textArea;
+    if (currentTarget.className === "changeTextSize") {
+      const state =
+        textArea.enlarged === false
+          ? {
+              textArea: { input, className: "textEnlarged", enlarged: true },
+              mdPreview: { className: "noneMd", enlarged: false }
+            }
+          : {
+              textArea: { input, className: "textContainer", enlarged: false },
+              mdPreview: { className: "mdContainer", enlarged: false }
+            };
+      this.setState(state); //state已经是个对象了
+    }
+  }
+
+  handleMdClick({ currentTarget }) {
+    const { textArea, mdPreview } = this.state;
+    const { input } = textArea;
+    if (currentTarget.className === "changeMdSize") {
+      const state =
+        mdPreview.enlarged === false
+          ? {
+              textArea: { input, className: "noneText", enlarged: false },
+              mdPreview: { className: "mdEnlarged", enlarged: true }
+            }
+          : {
+              textArea: { input, className: "textContainer", enlarged: false },
+              mdPreview: { className: "mdContainer", enlarged: false }
+            };
+      this.setState(state);
+    }
+  }
+
+  render() {
+    const { handleChange, state, handleTextClick } = this;
+    return (
+      <div className="container">
+        <TextArea
+          onText={handleChange}
+          onEnlarge={handleTextClick}
+          state={state}
+          className={state.textArea.className}
+        />
+        <Md
+          state={state}
+          className={state.mdPreview.className}
+          onEnlarge={this.handleMdClick}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;

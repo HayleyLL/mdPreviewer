@@ -39,6 +39,9 @@ $border: solid black thin;
   justify-content: space-between;
   padding: 0 5px;
   border: $border;
+  .changeMdSize:hover {
+    color: gray;
+  }
   .preview {
     margin-left: 10px;
     font-weight: 900;

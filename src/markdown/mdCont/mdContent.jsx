@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "github-markdown-css";
 import ReactMarkdown from "react-markdown";
 import {
@@ -9,7 +9,7 @@ import {
 import "./mdContent.scss";
 
 const Md = props => {
-  const { className, onEnlarge } = props;
+  const { className, onEnlarge, enlarged } = props;
   return (
     <div className={className}>
       <div className="mdHeader">
@@ -18,7 +18,7 @@ const Md = props => {
           <span className="preview">Previewer</span>
         </span>
         <span className="changeMdSize" onClick={onEnlarge}>
-          <FullscreenOutlined />
+          {enlarged === false ? <FullscreenOutlined /> : <ShrinkOutlined />}
         </span>
       </div>
       <div id="preview" className="markdown-body">

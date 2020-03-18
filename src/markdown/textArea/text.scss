@@ -35,6 +35,9 @@ $border: black solid thin;
   justify-content: space-between;
   padding: 0 5px;
   border: $border;
+  .changeTextSize:hover {
+    color: gray;
+  }
   .edit {
     margin-left: 10px;
     font-weight: 900;

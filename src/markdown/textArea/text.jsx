@@ -8,7 +8,7 @@ import "./text.scss";
 
 class TextArea extends Component {
   render() {
-    const { onText, state, onEnlarge, className } = this.props;
+    const { onText, state, onEnlarge, className, enlarged } = this.props;
     return (
       <div className={className}>
         <div className="textHeader">
@@ -17,7 +17,7 @@ class TextArea extends Component {
             <span className="edit">Editor</span>
           </span>
           <span onClick={onEnlarge} className="changeTextSize">
-            <FullscreenOutlined />
+            {enlarged === false ? <FullscreenOutlined /> : <ShrinkOutlined />}
           </span>
         </div>
         <textarea

@@ -35,7 +35,7 @@ class App extends Component {
   }
 
   handleTextClick({ currentTarget }) {
-    const { textArea, mdPreview } = this.state;
+    const { textArea } = this.state;
     const { input } = textArea;
     if (currentTarget.className === "changeTextSize") {
       const state =
@@ -72,17 +72,20 @@ class App extends Component {
 
   render() {
     const { handleChange, state, handleTextClick } = this;
+    const { textArea, mdPreview } = state;
     return (
       <div className="container">
         <TextArea
           onText={handleChange}
           onEnlarge={handleTextClick}
           state={state}
-          className={state.textArea.className}
+          className={textArea.className}
+          enlarged={textArea.enlarged}
         />
         <Md
           state={state}
-          className={state.mdPreview.className}
+          className={mdPreview.className}
+          enlarged={mdPreview.enlarged}
           onEnlarge={this.handleMdClick}
         />
       </div>

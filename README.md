@@ -1,4 +1,4 @@
-## tart
+## Start
 `yarn start`<br>
 or<br>
 `npm start`
